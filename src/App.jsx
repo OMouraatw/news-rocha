@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input.jsx'
 import { Checkbox } from '@/components/ui/checkbox.jsx'
 import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Dumbbell, Zap, Target, Trophy, Brain, Flame } from 'lucide-react'
+import Reveal from './components/Reveal'
 import './App.css'
 
 function App() {
@@ -83,74 +84,135 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-red-950 to-black text-white">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-red-900/30 to-black/50"></div>
-        <div className="relative z-10 text-center max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-black mb-6 text-white leading-tight">
-            NEWSLETTER
-            <span className="block text-red-500">SAIZEN SCHOOL</span>
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 text-gray-300 font-medium">
-            Junte-se a milhares de atletas que recebem os protocolos mais intensos de treino, nutrição e suplementação para máxima hipertrofia e força.
-          </p>
-          <div className="flex justify-center">
-            <NewsletterForm title="QUERO EVOLUIR AGORA" />
+<section className="relative isolate min-h-screen flex items-center justify-center px-4 py-20">
+    {/* Overlay que não intercepta cliques */}
+    <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-red-900/30 to-black/50 pointer-events-none"></div>
+
+    <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+      {/* Coluna esquerda */}
+      <Reveal as="div" className="text-left" once>
+        <Reveal as="h1" className="text-5xl md:text-7xl font-black mb-6 text-white tracking-widest" delay={0}>
+          NEWSLETTER
+          <span className="block text-red-500">SAIZEN SCHOOL</span>
+        </Reveal>
+
+        <Reveal as="p" className="text-xl md:text-2xl mb-8 text-gray-300 font-medium" delay={120}>
+          Junte-se a milhares de atletas que recebem os protocolos mais intensos de treino, nutrição e suplementação para máxima hipertrofia e força.
+        </Reveal>
+
+        <Reveal as="div" className="flex justify-start" delay={240}>
+          <NewsletterForm title="QUERO EVOLUIR AGORA" />
+        </Reveal>
+      </Reveal>
+
+      {/* Coluna direita (imagem/placeholder) */}
+      <Reveal as="div" className="flex justify-center lg:justify-end" once delay={120}>
+        <div className="relative">
+          <div className="w-80 h-96 md:w-96 md:h-[500px] bg-gradient-to-br from-red-900/30 to-black/50 border-2 border-red-800/50 rounded-lg flex items-center justify-center">
+            <div className="text-center p-6">
+              <Dumbbell className="w-16 h-16 text-red-500 mx-auto mb-4" />
+              <p className="text-gray-400 text-lg font-medium">Imagem</p>
+              <p className="text-gray-500 text-sm mt-2">Placeholder</p>
+            </div>
           </div>
         </div>
-      </section>
-
+      </Reveal>
+    </div>
+  </section>
+      
+      {/* Imagem lateral entre seções */}
+      {/* <section className="relative px-4 -mt-48 md:-mt-48 lg:-mt-120 mb-35 md:-mb-35 lg:-mb-20 z-20">
+        <div className="max-w-7xl mx-auto flex justify-end">
+          <div className="relative">
+            <div className="w-80 h-96 md:w-96 md:h-[500px] bg-gradient-to-br from-red-900/30 to-black/50 border-2 border-red-800/50 rounded-lg flex items-center justify-center">
+              <div className="text-center p-6">
+                <Dumbbell className="w-16 h-16 text-red-500 mx-auto mb-4" />
+                <p className="text-gray-400 text-lg font-medium">
+                  Imagem treino
+                </p>
+                <p className="text-gray-500 text-sm mt-2">
+                  Placeholder
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> */}
+      
       {/* Benefits Section */}
       <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-black text-center mb-16 text-white">
-            O QUE VOCÊ VAI RECEBER
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="bg-black/40 border-red-800 hover:border-green-600 transition-all duration-300 transform hover:scale-105">
-              <CardContent className="p-6 text-center">
-                <Dumbbell className="w-12 h-12 text-green-500 mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-3 text-white">Protocolos de Treino</h3>
-                <p className="text-gray-300">Metodologias testadas e aprovadas para máxima hipertrofia e ganho de força</p>
-              </CardContent>
-            </Card>
-            <Card className="bg-black/40 border-red-800 hover:border-green-600 transition-all duration-300 transform hover:scale-105">
-              <CardContent className="p-6 text-center">
-                <Target className="w-12 h-12 text-green-500 mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-3 text-white">Nutrição Esportiva</h3>
-                <p className="text-gray-300">Estratégias alimentares precisas para potencializar seus resultados</p>
-              </CardContent>
-            </Card>
-            <Card className="bg-black/40 border-red-800 hover:border-green-600 transition-all duration-300 transform hover:scale-105">
-              <CardContent className="p-6 text-center">
-                <Zap className="w-12 h-12 text-green-500 mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-3 text-white">Suplementação</h3>
-                <p className="text-gray-300">Reviews e recomendações baseadas em evidências científicas</p>
-              </CardContent>
-            </Card>
-            <Card className="bg-black/40 border-red-800 hover:border-green-600 transition-all duration-300 transform hover:scale-105">
-              <CardContent className="p-6 text-center">
-                <Flame className="w-12 h-12 text-green-500 mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-3 text-white">Técnicas Avançadas</h3>
-                <p className="text-gray-300">Métodos de intensificação e periodização para quebrar plateaus</p>
-              </CardContent>
-            </Card>
-            <Card className="bg-black/40 border-red-800 hover:border-green-600 transition-all duration-300 transform hover:scale-105">
-              <CardContent className="p-6 text-center">
-                <Brain className="w-12 h-12 text-green-500 mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-3 text-white">Mindset de Campeão</h3>
-                <p className="text-gray-300">Psicologia do treino e estratégias mentais para superação</p>
-              </CardContent>
-            </Card>
-            <Card className="bg-black/40 border-red-800 hover:border-green-600 transition-all duration-300 transform hover:scale-105">
-              <CardContent className="p-6 text-center">
-                <Trophy className="w-12 h-12 text-green-500 mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-3 text-white">Conteúdo Exclusivo</h3>
-                <p className="text-gray-300">Vídeos, e-books e materiais premium para membros</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+  <div className="max-w-6xl mx-auto">
+    <Reveal
+      as="h2"
+      className="text-4xl md:text-5xl font-black text-center mb-16 text-white tracking-widest"
+      once
+    >
+      O QUE VOCÊ VAI RECEBER
+    </Reveal>
+
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <Reveal once delay={0}>
+        <Card className="bg-black/40 border-red-800 hover:border-green-600 transition-all duration-300 transform hover:scale-105">
+          <CardContent className="p-6 text-center">
+            <Dumbbell className="w-12 h-12 text-green-500 mx-auto mb-4" />
+            <h3 className="text-xl font-bold mb-3 text-white tracking-widest">Protocolos de Treino</h3>
+            <p className="text-gray-300">Metodologias testadas e aprovadas para máxima hipertrofia e ganho de força</p>
+          </CardContent>
+        </Card>
+      </Reveal>
+
+      <Reveal once delay={120}>
+        <Card className="bg-black/40 border-red-800 hover:border-green-600 transition-all duration-300 transform hover:scale-105">
+          <CardContent className="p-6 text-center">
+            <Target className="w-12 h-12 text-green-500 mx-auto mb-4" />
+            <h3 className="text-xl font-bold mb-3 text-white">Nutrição Esportiva</h3>
+            <p className="text-gray-300">Estratégias alimentares precisas para potencializar seus resultados</p>
+          </CardContent>
+        </Card>
+      </Reveal>
+
+      <Reveal once delay={240}>
+        <Card className="bg-black/40 border-red-800 hover:border-green-600 transition-all duration-300 transform hover:scale-105">
+          <CardContent className="p-6 text-center">
+            <Zap className="w-12 h-12 text-green-500 mx-auto mb-4" />
+            <h3 className="text-xl font-bold mb-3 text-white">Lorem Ipsum</h3>
+            <p className="text-gray-300">Reviews e recomendações baseadas em evidências científicas</p>
+          </CardContent>
+        </Card>
+      </Reveal>
+
+      <Reveal once delay={360}>
+        <Card className="bg-black/40 border-red-800 hover:border-green-600 transition-all duration-300 transform hover:scale-105">
+          <CardContent className="p-6 text-center">
+            <Flame className="w-12 h-12 text-green-500 mx-auto mb-4" />
+            <h3 className="text-xl font-bold mb-3 text-white">Técnicas Avançadas</h3>
+            <p className="text-gray-300">Métodos de intensificação e periodização para quebrar plateaus</p>
+          </CardContent>
+        </Card>
+      </Reveal>
+
+      <Reveal once delay={480}>
+        <Card className="bg-black/40 border-red-800 hover:border-green-600 transition-all duration-300 transform hover:scale-105">
+          <CardContent className="p-6 text-center">
+            <Brain className="w-12 h-12 text-green-500 mx-auto mb-4" />
+            <h3 className="text-xl font-bold mb-3 text-white">Lorem Ipsum</h3>
+            <p className="text-gray-300">Psicologia do treino e estratégias mentais para superação</p>
+          </CardContent>
+        </Card>
+      </Reveal>
+
+      <Reveal once delay={600}>
+        <Card className="bg-black/40 border-red-800 hover:border-green-600 transition-all duration-300 transform hover:scale-105">
+          <CardContent className="p-6 text-center">
+            <Trophy className="w-12 h-12 text-green-500 mx-auto mb-4" />
+            <h3 className="text-xl font-bold mb-3 text-white">Conteúdo Exclusivo</h3>
+            <p className="text-gray-300">Vídeos, e-books e materiais premium para membros</p>
+          </CardContent>
+        </Card>
+      </Reveal>
+    </div>
+  </div>
+</section>
 
       {/* Content Description */}
       <section className="py-20 px-4 bg-black/30">
