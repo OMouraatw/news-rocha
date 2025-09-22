@@ -25,7 +25,6 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log('Form submitted:', formData)
-    // Aqui você adicionaria a lógica de envio do formulário
     alert('Inscrição realizada com sucesso! Prepare-se para a transformação!')
   }
 
@@ -97,9 +96,7 @@ function App() {
         </Reveal>
 
         <Reveal as="p" className="text-xl md:text-2xl mb-8 text-gray-300 font-medium" delay={120}>
-          Junte-se a milhares de atletas que recebem os protocolos mais intensos de treino, nutrição e suplementação para máxima hipertrofia e força.
-        </Reveal>
-
+        Eleve seus treinos a outro nível com dicas exclusivas de musculação, exercícios estratégicos e métodos avançados. Assine nosso newsletter agora!</Reveal>
         <Reveal as="div" className="flex justify-start" delay={240}>
           <NewsletterForm title="QUERO EVOLUIR AGORA" />
         </Reveal>
@@ -139,7 +136,7 @@ function App() {
         </div>
       </section> */}
       
-      {/* Benefits Section */}
+      {/* Benefits Section
       <section className="py-20 px-4">
   <div className="max-w-6xl mx-auto">
     <Reveal
@@ -212,7 +209,7 @@ function App() {
       </Reveal>
     </div>
   </div>
-</section>
+</section> */}
 
       {/* Content Description */}
       <section className="py-20 px-4 bg-black/30">
@@ -222,20 +219,20 @@ function App() {
           </h2>
           <div className="space-y-6 text-lg text-gray-300">
             <p>
-              Receba por e-mail os protocolos mais intensos e eficazes para transformação corporal, selecionados pela equipe Saizen School.
+            Descubra o poder da informação aplicada à musculação com a Saizen School. Nosso conteúdo é pensado para quem busca evoluir de forma consciente.
             </p>
             <p>
-              Toda semana você terá acesso a treinos que vão te levar ao limite, estratégias nutricionais para máxima hipertrofia e as últimas descobertas em suplementação.
+            Receba análises detalhadas de artigos, modelos e métodos científicos, traduzidos em dicas práticas para otimizar seus treinos e resultados.
             </p>
             <p>
-              Você ainda pode acompanhar análises detalhadas de técnicas avançadas e receber conteúdos exclusivos como vídeos de treino, e-books de nutrição e protocolos que só os atletas de elite conhecem.
+Aprenda passo a passo, de forma didática, como aplicar estratégias eficientes no seu dia a dia. Assine nosso newsletter e transforme seu conhecimento em performance.
             </p>
           </div>
         </div>
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 px-4">
+      {/* <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-black text-center mb-16 text-white">
             VEJA AS TRANSFORMAÇÕES REAIS
@@ -291,7 +288,7 @@ function App() {
             </Card>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Final CTA */}
       <section className="py-20 px-4 bg-gradient-to-b from-red-950 to-black">
