@@ -119,9 +119,10 @@ function App() {
     </div>
   </div>
 </Reveal>
+
         
-          {/* Coluna direita (imagem/placeholder)
-          <Reveal as="div" className="flex justify-center lg:justify-end" once delay={120}>
+          {/* Coluna direita (imagem/placeholder) */}
+          {/* <Reveal as="div" className="flex justify-center lg:justify-end" once delay={120}>
             <div className="relative">
               <div className="w-80 h-96 md:w-96 md:h-[500px] bg-gradient-to-br from-red-900/30 to-black/50 border-2 border-red-800/50 rounded-lg flex items-center justify-center">
                 <div className="text-center p-6">
@@ -131,9 +132,9 @@ function App() {
                 </div>
               </div>
             </div>
-          </Reveal>
+          </Reveal> */}
         </div>
-      </section> */}
+      </section>
       {/* Imagem lateral entre seções */}
       {/* <section className="relative px-4 -mt-48 md:-mt-48 lg:-mt-120 mb-35 md:-mb-35 lg:-mb-20 z-20">
         <div className="max-w-7xl mx-auto flex justify-end">
