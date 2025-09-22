@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input.jsx'
 import { Checkbox } from '@/components/ui/checkbox.jsx'
 import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Dumbbell } from 'lucide-react'
-import IMG1 from './imgs/IMG_1.jpg'
+import IMG1 from './imgs/IMG_1.JPG'
 import Reveal from './components/Reveal'
 import './App.css'
 
