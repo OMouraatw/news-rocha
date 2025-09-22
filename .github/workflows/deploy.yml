@@ -21,21 +21,36 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # 1) Instala o pnpm primeiro (coloque a versão que você usa)
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      # (opcional, mas ajuda em algumas imagens)
+      - name: Enable Corepack
+        run: corepack enable
+
+      # 2) Agora configura o Node + cache do pnpm (pnpm já existe no PATH)
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'pnpm'
+          cache-dependency-path: pnpm-lock.yaml
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9 # ou a versão que você usa no projeto
-          run_install: true
+      # 3) Instala dependências a partir do lockfile
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
 
+      # 4) Build do Vite
       - name: Build
         run: pnpm build
 
+      # (Opcional) SPA fallback para React Router
+      - name: Create 404 fallback (SPA)
+        run: cp dist/index.html dist/404.html || true
+
+      # 5) Sobe artefato para o Pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
