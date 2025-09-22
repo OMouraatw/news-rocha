@@ -1,25 +1,26 @@
-import { useState } from 'react'
+import { useState, useId, memo } from 'react'
 import { Button } from '@/components/ui/button.jsx'
 import { Input } from '@/components/ui/input.jsx'
 import { Checkbox } from '@/components/ui/checkbox.jsx'
 import { Card, CardContent } from '@/components/ui/card.jsx'
-import { Dumbbell, Zap, Target, Trophy, Brain, Flame } from 'lucide-react'
+import { Dumbbell } from 'lucide-react'
 import Reveal from './components/Reveal'
 import './App.css'
 
-function App() {
+// Form isolado, com estado próprio e IDs únicos
+const NewsletterForm = memo(function NewsletterForm({ title = "QUERO EVOLUIR AGORA", idPrefix = "" }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     acceptTerms: false,
     acceptCommunications: false
   })
+  const uid = useId()
+  const termsId = `${idPrefix}terms-${uid}`
+  const commsId = `${idPrefix}communications-${uid}`
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }))
+    setFormData(prev => ({ ...prev, [field]: value }))
   }
 
   const handleSubmit = (e) => {
@@ -28,7 +29,7 @@ function App() {
     alert('Inscrição realizada com sucesso! Prepare-se para a transformação!')
   }
 
-  const NewsletterForm = ({ title = "QUERO EVOLUIR AGORA" }) => (
+  return (
     <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md">
       <Input
         type="text"
@@ -49,24 +50,24 @@ function App() {
       <div className="space-y-2">
         <div className="flex items-center space-x-2">
           <Checkbox
-            id="terms"
+            id={termsId}
             checked={formData.acceptTerms}
-            onCheckedChange={(checked) => handleInputChange('acceptTerms', checked)}
+            onCheckedChange={(checked) => handleInputChange('acceptTerms', !!checked)}
             className="border-red-800 data-[state=checked]:bg-green-600"
             required
           />
-          <label htmlFor="terms" className="text-sm text-gray-300">
+          <label htmlFor={termsId} className="text-sm text-gray-300">
             Aceito os Termos e Condições e autorizo o uso de meus dados
           </label>
         </div>
         <div className="flex items-center space-x-2">
           <Checkbox
-            id="communications"
+            id={commsId}
             checked={formData.acceptCommunications}
-            onCheckedChange={(checked) => handleInputChange('acceptCommunications', checked)}
+            onCheckedChange={(checked) => handleInputChange('acceptCommunications', !!checked)}
             className="border-red-800 data-[state=checked]:bg-green-600"
           />
-          <label htmlFor="communications" className="text-sm text-gray-300">
+          <label htmlFor={commsId} className="text-sm text-gray-300">
             Aceito receber comunicações sobre produtos e treinos
           </label>
         </div>
@@ -79,44 +80,47 @@ function App() {
       </Button>
     </form>
   )
+})
 
+function App() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-red-950 to-black text-white">
       {/* Hero Section */}
-<section className="relative isolate min-h-screen flex items-center justify-center px-4 py-20">
-    {/* Overlay que não intercepta cliques */}
-    <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-red-900/30 to-black/50 pointer-events-none"></div>
+      <section className="relative isolate min-h-screen flex items-center justify-center px-4 py-20">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-red-900/30 to-black/50 pointer-events-none" />
 
-    <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-      {/* Coluna esquerda */}
-      <Reveal as="div" className="text-left" once>
-        <Reveal as="h1" className="text-5xl md:text-7xl font-black mb-6 text-white tracking-widest" delay={0}>
-          NEWSLETTER
-          <span className="block text-red-500">SAIZEN SCHOOL</span>
-        </Reveal>
+        <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+          {/* Coluna esquerda */}
+          <div className="text-left">
+            <h1 className="text-5xl md:text-7xl font-black mb-6 text-white tracking-widest">
+              NEWSLETTER
+              <span className="block text-red-500">SAIZEN SCHOOL</span>
+            </h1>
 
-        <Reveal as="p" className="text-xl md:text-2xl mb-8 text-gray-300 font-medium" delay={120}>
-        Eleve seus treinos a outro nível com dicas exclusivas de musculação, exercícios estratégicos e métodos avançados. Assine nosso newsletter agora!</Reveal>
-        <Reveal as="div" className="flex justify-start" delay={240}>
-          <NewsletterForm title="QUERO EVOLUIR AGORA" />
-        </Reveal>
-      </Reveal>
+            <p className="text-xl md:text-2xl mb-8 text-gray-300 font-medium">
+              Eleve seus treinos a outro nível com dicas exclusivas de musculação, exercícios estratégicos e métodos avançados. Assine nosso newsletter agora!
+            </p>
 
-      {/* Coluna direita (imagem/placeholder) */}
-      <Reveal as="div" className="flex justify-center lg:justify-end" once delay={120}>
-        <div className="relative">
-          <div className="w-80 h-96 md:w-96 md:h-[500px] bg-gradient-to-br from-red-900/30 to-black/50 border-2 border-red-800/50 rounded-lg flex items-center justify-center">
-            <div className="text-center p-6">
-              <Dumbbell className="w-16 h-16 text-red-500 mx-auto mb-4" />
-              <p className="text-gray-400 text-lg font-medium">Imagem</p>
-              <p className="text-gray-500 text-sm mt-2">Placeholder</p>
+            {/* ✅ Renderize o formulário FORA de um wrapper que remonta os filhos */}
+            <div className="flex justify-start">
+              <NewsletterForm title="QUERO EVOLUIR AGORA" idPrefix="hero-" />
             </div>
           </div>
+
+          {/* Coluna direita (imagem/placeholder) */}
+          <Reveal as="div" className="flex justify-center lg:justify-end" once delay={120}>
+            <div className="relative">
+              <div className="w-80 h-96 md:w-96 md:h-[500px] bg-gradient-to-br from-red-900/30 to-black/50 border-2 border-red-800/50 rounded-lg flex items-center justify-center">
+                <div className="text-center p-6">
+                  <Dumbbell className="w-16 h-16 text-red-500 mx-auto mb-4" />
+                  <p className="text-gray-400 text-lg font-medium">Imagem</p>
+                  <p className="text-gray-500 text-sm mt-2">Placeholder</p>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
-      </Reveal>
-    </div>
-  </section>
-      
+      </section>
       {/* Imagem lateral entre seções */}
       {/* <section className="relative px-4 -mt-48 md:-mt-48 lg:-mt-120 mb-35 md:-mb-35 lg:-mb-20 z-20">
         <div className="max-w-7xl mx-auto flex justify-end">
@@ -300,10 +304,11 @@ Aprenda passo a passo, de forma didática, como aplicar estratégias eficientes 
             Junte-se aos atletas que levam o treino a sério e transformam seus corpos com ciência e intensidade.
           </p>
           <div className="flex justify-center">
-            <NewsletterForm title="QUERO SER UM ATLETA DE ELITE" />
+            <NewsletterForm title="QUERO SER UM ATLETA DE ELITE" idPrefix="cta-" />
           </div>
         </div>
       </section>
+
 
       {/* Footer */}
       <footer className="py-8 px-4 bg-black border-t border-red-800">
