@@ -62,14 +62,14 @@ const handleSubmit = async (e) => {
         className="bg-black/20 border-red-800 text-white placeholder:text-gray-400"
         required
       />
-      <Input
-        type="tel"
-        placeholder="Digite seu Telefone"
-        value={formData.phone}
-        onChange={(e) => handleInputChange('email', e.target.value)}
-        className="bg-black/20 border-red-800 text-white placeholder:text-gray-400"
-        required
-      />
+<Input
+  type="tel"
+  placeholder="Digite seu telefone"
+  value={formData.phone}
+  onChange={(e) => handleInputChange('phone', e.target.value)}
+  className="bg-black/20 border-red-800 text-white placeholder:text-gray-400"
+  required
+/>
       <div className="space-y-2">
         <div className="flex items-center space-x-2">
           <Checkbox
