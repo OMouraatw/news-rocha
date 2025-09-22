@@ -12,7 +12,7 @@ import './App.css'
 const NewsletterForm = memo(function NewsletterForm({ title = "QUERO EVOLUIR AGORA", idPrefix = "" }) {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
+    phone: '',
     acceptTerms: false,
     acceptCommunications: false
   })
@@ -35,7 +35,7 @@ const handleSubmit = async (e) => {
       },
       body: JSON.stringify({
         NOME: formData.name,
-        EMAIL: formData.email,
+        EMAIL: formData.phone,
       }),
     });
 
@@ -63,7 +63,7 @@ const handleSubmit = async (e) => {
         required
       />
       <Input
-        type="email"
+        type="tel"
         placeholder="Digite seu Telefone"
         value={formData.email}
         onChange={(e) => handleInputChange('email', e.target.value)}
