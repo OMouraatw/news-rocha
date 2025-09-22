@@ -23,12 +23,34 @@ const NewsletterForm = memo(function NewsletterForm({ title = "QUERO EVOLUIR AGO
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }))
   }
+  
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('Form submitted:', formData)
-    alert('Inscrição realizada com sucesso! Prepare-se para a transformação!')
+  try {
+    const response = await fetch("https://da579d415eed.ngrok-free.app/inscrever", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        NOME: formData.name,
+        EMAIL: formData.email,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erro HTTP! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("Resposta do servidor:", data);
+    alert("Inscrição realizada com sucesso! Prepare-se para a transformação!");
+  } catch (error) {
+    console.error("Erro ao enviar inscrição:", error);
+    alert("Ocorreu um erro ao enviar sua inscrição. Tente novamente mais tarde.");
   }
+};
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md">
