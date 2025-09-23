@@ -13,6 +13,7 @@ const NewsletterForm = memo(function NewsletterForm({ title = "QUERO EVOLUIR AGO
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
+    email: '',
     acceptTerms: false,
     acceptCommunications: false
   })
@@ -35,7 +36,8 @@ const handleSubmit = async (e) => {
       },
       body: JSON.stringify({
         NOME: formData.name,
-        EMAIL: formData.phone,
+        EMAIL: formData.email,
+        PHONE: formData.phone
       }),
     });
 
@@ -62,14 +64,23 @@ const handleSubmit = async (e) => {
         className="bg-black/20 border-red-800 text-white placeholder:text-gray-400"
         required
       />
-<Input
-  type="tel"
-  placeholder="Digite seu telefone"
-  value={formData.phone}
-  onChange={(e) => handleInputChange('phone', e.target.value)}
-  className="bg-black/20 border-red-800 text-white placeholder:text-gray-400"
-  required
-/>
+      <Input
+        type="email"
+        placeholder="Digite seu telefone"
+        value={formData.phone}
+        onChange={(e) => handleInputChange('email', e.target.value)}
+        className="bg-black/20 border-red-800 text-white placeholder:text-gray-400"
+        required
+    />
+    <Input
+      type="tel"
+      placeholder="Digite seu telefone"
+      value={formData.phone}
+      onChange={(e) => handleInputChange('phone', e.target.value)}
+      className="bg-black/20 border-red-800 text-white placeholder:text-gray-400"
+      required
+    />
+
       <div className="space-y-2">
         <div className="flex items-center space-x-2">
           <Checkbox
@@ -83,7 +94,7 @@ const handleSubmit = async (e) => {
             Aceito os Termos e Condições e autorizo o uso de meus dados
           </label>
         </div>
-        <div className="flex items-center space-x-2">
+        {/* <div className="flex items-center space-x-2">
           <Checkbox
             id={commsId}
             checked={formData.acceptCommunications}
@@ -93,7 +104,7 @@ const handleSubmit = async (e) => {
           <label htmlFor={commsId} className="text-sm text-gray-300">
             Aceito receber comunicações sobre produtos e treinos
           </label>
-        </div>
+        </div> */}
       </div>
       <Button 
         type="submit" 
