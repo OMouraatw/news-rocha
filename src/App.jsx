@@ -87,10 +87,10 @@ const handleSubmit = async (e) => {
             id={termsId}
             checked={formData.acceptTerms}
             onCheckedChange={(checked) => handleInputChange('acceptTerms', !!checked)}
-            className="border-red-800 data-[state=checked]:bg-green-600"
+            className="border-red-800 data-[state=checked]:bg-green-600 cursor-pointer"
             required
           />
-          <label htmlFor={termsId} className="text-sm text-gray-300">
+          <label htmlFor={termsId} className="text-sm text-gray-300 cursor-pointer">
             Aceito os Termos e Condições e autorizo o uso de meus dados
           </label>
         </div>
@@ -108,7 +108,7 @@ const handleSubmit = async (e) => {
       </div>
       <Button 
         type="submit" 
-        className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105"
+        className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 cursor-pointer"
       >
         {title}
       </Button>
@@ -136,9 +136,22 @@ function App() {
             </p>
 
             {/* ✅ Renderize o formulário FORA de um wrapper que remonta os filhos */}
-            <div className="flex justify-start">
-              <NewsletterForm title="QUERO EVOLUIR AGORA" idPrefix="hero-" />
+            <div className="flex flex-col items-center space-y-4 cursor-pointer">
+              <NewsletterForm title="QUERO EVOLUIR AGORA" idPrefix="hero-" className='cursor-pointer'/>
+
+              {/* Botão de suporte com Reveal */}
+              <Reveal as="div" once delay={200} className="w-full flex justify-center">
+                <a
+                  href="https://wa.me/5543996326466"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs px-4 py-2 bg-blue-600/70 hover:bg-blue-600/30 text-gray-200 rounded-lg transition cursor-pointer shadow-sm"
+                >
+                  Com problemas? Entre em contato com o nosso suporte
+                </a>
+              </Reveal>
             </div>
+
           </div>
 
           <Reveal as="div" className="flex justify-center lg:justify-end" once delay={120}>
