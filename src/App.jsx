@@ -47,7 +47,7 @@ const handleSubmit = async (e) => {
 
     const data = await response.json();
     console.log("Resposta do servidor:", data);
-    alert("Inscrição realizada com sucesso! Prepare-se para a transformação!");
+    alert("Inscrição realizada com sucesso! Em breve, você receberá uma mensagem no WhatsApp. Verifique e prepare-se para a transformação!");
   } catch (error) {
     console.error("Erro ao enviar inscrição:", error);
     alert("Ocorreu um erro ao enviar sua inscrição. Tente novamente mais tarde.");
