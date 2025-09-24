@@ -29,7 +29,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-    const response = await fetch("https://da579d415eed.ngrok-free.app/inscrever", {
+    const response = await fetch("https://5d0703290e79.ngrok-free.app/inscrever", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
