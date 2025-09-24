@@ -67,7 +67,7 @@ const handleSubmit = async (e) => {
       <Input
         type="email"
         placeholder="Digite seu email"
-        value={formData.phone}
+        value={formData.email}
         onChange={(e) => handleInputChange('email', e.target.value)}
         className="bg-black/20 border-red-800 text-white placeholder:text-gray-400"
         required
