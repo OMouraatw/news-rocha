@@ -111,7 +111,7 @@ const NewsletterForm = memo(function NewsletterForm({
     e.preventDefault();
 
     try {
-      const response = await fetch("https://4ae19ad25b76.ngrok-free.app/inscrever", { // <- sem espaço inicial
+      const response = await fetch("https://ab332ae0d334.ngrok-free.app/inscrever", { // <- sem espaço inicial
         method: "POST",
         headers: {
           "Content-Type": "application/json",
